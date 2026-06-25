@@ -23,13 +23,11 @@ main()
 	uart0_init(115200);
 	uart0_tx_string("nodeB TESTING CAN\r\n");
 	 lcd_cmd(0X80);
-lcd_str("V25CE5M1");
+lcd_str("WELCOME TO");
 lcd_cmd(0XC0);
-lcd_str("YOUSUF");
+lcd_str("VECHILE MONITOR");
  lcd_cmd(0X94);
-lcd_str("(MAJOR PROJECT)");
-lcd_cmd(0XD4);
-lcd_str("DRIVE SENSE");
+lcd_str("DASHBOARD");
 delay_ms(2500);
 	 lcd_cmd(0X01);
 	while(1){		
@@ -55,22 +53,14 @@ delay_ms(2500);
 		 uart0_tx_string("\r\n");
 		 int_str(m1.byteA);
 		  strcpy(fuel,buf);
-//lcd_cmd(0XC0);
-//lcd_str("FUEL: "); 
-//lcd_str((unsigned char *)buf); 
-//lcd_data('%');
 
   if(m1.byteB == 1)
-       { ls=1; 
-// lcd_cmd(0xD4);
-//	lcd_str("LED  ON");
+       { ls=1;
             IOCLR0 = led;
             uart0_tx_string("LED ON\r\n");
         }
         else
         {   ls=0;
-//		lcd_cmd(0xD4);
-//	lcd_str("LED OFF");
             IOSET0 = led;
             uart0_tx_string("LED OFF\r\n");
         } }
@@ -83,11 +73,6 @@ delay_ms(2500);
 		 uart0_tx_string("\r\n");
 		 int_str(m1.byteA);
 		 strcpy(temp,buf);
-//		lcd_cmd(0X80);
-//		lcd_str("TEMP: "); 
-//lcd_str((unsigned char *)buf); 
-//lcd_data(0xDF);
-//lcd_data('c'); 
  
 uart0_tx_string("Dist: ");
 		uart0_tx_integer(m1.byteB);
@@ -95,10 +80,6 @@ uart0_tx_string("Dist: ");
 		 uart0_tx_string("\r\n");
 		 int_str(m1.byteB);
 		 strcpy(dist,buf);
-//lcd_cmd(0X94);
-//lcd_str("DIST:"); 
-//lcd_str((unsigned char *)buf); 
-//lcd_str(" CM");
 
 		}	
 		else{
